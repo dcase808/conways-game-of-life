@@ -30,9 +30,9 @@ def update(board):
             if j in (0, game[1] - 1):
                 continue
             alive = board[i - 1][j - 1] + board[i - 1][j] + board[i - 1][j + 1] + board[i][j - 1] + 0 + board[i][j + 1] + board[i + 1][j - 1] + board[i + 1][j] + board[i + 1][j + 1]
-            if board[i][j] and (alive == 2 or alive == 3):
+            if board[i][j] and alive in rules[0]:
                 temp_board[i][j] = 1
-            elif not board[i][j] and alive == 3:
+            elif not board[i][j] and alive in rules[1]:
                 temp_board[i][j] = 1
             else:
                 temp_board[i][j] = 0
@@ -42,6 +42,7 @@ def update(board):
 resolution = (1200, 700)
 scale = 5
 game = (resolution[0] // scale, resolution[1] // scale)
+rules = ((2, 3), (3, ))
 
 pg.init()
 font = pg.font.SysFont(None, 48)
